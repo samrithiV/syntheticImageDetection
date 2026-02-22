@@ -26,12 +26,12 @@ The overall workflow of the model pipeline is shown below:
 
 ```mermaid
 flowchart LR
-    A[Load CIFAKE Dataset] --> B[Image Preprocessing]
+    A[Load CIFAKE Dataset] --> B[Preprocess Images]
     B --> C[Load Pretrained ResNet50]
     C --> D[Freeze Early Layers]
-    D --> E[Replace Final Layer for 2 Classes]
+    D --> E[Replace Final Layer]
     E --> F[Train Model]
-    F --> G[Validate Each Epoch]
+    F --> G[Validate Model]
     G --> H[Save Best Model]
-    H --> I[Run Prediction]
-    I --> J[GradCAM and Saliency Maps]
+    H --> I[Make Predictions]
+    I --> J[Generate GradCAM and Saliency Maps]
