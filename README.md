@@ -1,15 +1,28 @@
 # Synthetic Image Detection and Analysis
 
 ## Overview
-This project focuses on detecting synthetic images and understanding the reliability of these systems. Modern Gen AI models can create highly realistic images, making it difficult to distinguish them from real images. In this project, we not only build a model to detect synthetic images, but we also attempt to intentionally break the model to understand its weaknesses and improve its robustness.
+With the rapid development of generative AI models, synthetic images are becoming increasingly realistic and difficult to distinguish from real photographs. This creates challenges in areas such as misinformation detection, digital forensics, and cybersecurity.  
+In this project, we build a deep learning system capable of detecting synthetic images and analyze how robust the model is when faced with adversarial image modifications.
 
-The project is divided into three main phases:
-* Build the image classification model
-* Try to break the model using high quality synthetic images
-* Improvise the model to handle such data
- 
-## Building the Model
-This project builds a synthetic image detection system using a ResNet-50 deep learning model trained on the CIFAKE dataset. The model is designed to classify images as real or synthetic, and the workflow below illustrates the main steps involved in training, prediction, and analysis.
+Our work follows a research-oriented workflow:
+
+1. **Build** – Train a synthetic image detection model  
+2. **Break** – Apply adversarial modifications to fool the detector  
+3. **Improve** – Propose a mitigation strategy based on observed weaknesses  
+
+The complete experimental analysis and results are available in the [**full project report**](https://docs.google.com/document/d/18w2fyaXJejX5-pdx30O5_YTF_keLgAn0sTKeSDNP7Wg/edit?usp=sharing).
+
+---
+
+## Model Development
+We implemented a synthetic image classification model using a **pretrained ResNet-50 architecture** and fine-tuned it on the **CIFAKE dataset**, which contains both real and synthetic images.
+
+Instead of training a model entirely from scratch, we used **transfer learning**:
+- Early layers of the network were **frozen** to retain pretrained visual features.
+- The final classification layer was **replaced and retrained** to classify images into two categories: **REAL** and **FAKE**.
+- The model was trained using supervised learning with labeled data.
+
+The overall workflow of the model pipeline is shown below:
 
 ```mermaid
 flowchart LR
