@@ -10,14 +10,15 @@ The project is divided into three main phases:
  
 ## Building the Model
 This project builds a synthetic image detection system using a ResNet-50 deep learning model trained on the CIFAKE dataset. The model is designed to classify images as real or synthetic, and the workflow below illustrates the main steps involved in training, prediction, and analysis.
+
 ```mermaid
 flowchart LR
-    A[Load CIFAKE Dataset] --> B[Preprocess Images (Resize, Normalize)]
-    B --> C[Load Pretrained ResNet-50]
-    C --> D[Freeze Early Layers, Train layer4 + fc]
-    D --> E[Replace Final Layer (2 Classes: REAL / FAKE)]
-    E --> F[Train Model (Loss, Optimizer, Scheduler)]
-    F --> G[Validate Each Epoch & Save Best Model]
-    G --> H[Run Prediction on Images]
-    H --> I[Get Confidence Scores]
-    I --> J[Explainability (Grad-CAM, Saliency Maps)]
+    A[Load CIFAKE Dataset] --> B[Image Preprocessing]
+    B --> C[Load Pretrained ResNet50]
+    C --> D[Freeze Early Layers]
+    D --> E[Replace Final Layer for 2 Classes]
+    E --> F[Train Model]
+    F --> G[Validate Each Epoch]
+    G --> H[Save Best Model]
+    H --> I[Run Prediction]
+    I --> J[GradCAM and Saliency Maps]
